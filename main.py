@@ -11,22 +11,19 @@ raspipie = pie()
 raspipie.printing("hello")
 """
 "newsapi = NewsApiClient(api_key='50481567b2e445c29cf4451867a2c398')"
+from classes import FullscreenWindow,newsApi
 from newsapi import NewsApiClient
+import threading
+
 import tkinter as tk
 
-window= tk.Tk()
-window.attributes("-fullscreen",True)
+req=["author","title"]
+news= newsApi()
+requests = news.request(req,"4")
+print(requests)
 
-widt= 763
-heigh= 480
-
-frame = tk.Frame(master=window,width=int(widt),bg="red",height=int(heigh))
-frame.pack(fill=tk.BOTH)
-
-btn_ext= tk.Button(master=window,text="X",bg="blue",command=window.destroy)
-btn_ext.place(x=widt,y=0)
-
-label = tk.Label(master=frame,text="Hello World", bg="red")
-label.place(x=widt/2, y=heigh/2)
-
-window.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = FullscreenWindow(root,"white",800,480)
+    app.add_label(requests[1],150,240)
+    root.mainloop()
