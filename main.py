@@ -1,17 +1,20 @@
-from classes import FullscreenWindow,newsApi,clock,button
+from classes import FullscreenWindow,newsApi,clock
 from newsapi import NewsApiClient
 import threading
 import tkinter as tk
 import grovepi
+import time
+"from events import Events"
 from WorldTimeAPI import service as serv
 
-run = True
+def initialise_libs():
+    clo = clock()
 
-clo = clock()
+    disp=["author","title"]
+    req = ["Formel 1","general"]
 
-disp=["author","title"]
-req = ["Formel 1","general"]
+    root = tk.Tk()
+    app = FullscreenWindow(root,"black",800,480,disp)
+    root.mainloop()
 
-root = tk.Tk()
-app = FullscreenWindow(root,"black",800,480,disp)
-root.mainloop()
+initialise_libs()
