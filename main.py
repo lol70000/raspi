@@ -4,12 +4,14 @@ import threading
 import tkinter as tk
 import grovepi
 import time
-"from events import Events"
+import ev
 from WorldTimeAPI import service as serv
 
-def initialise_libs():
+def initialise_clock():
     clo = clock()
 
+value = 0
+def initialise_libs():
     disp=["author","title"]
     req = ["Formel 1","general"]
 
@@ -17,4 +19,9 @@ def initialise_libs():
     app = FullscreenWindow(root,"black",800,480,disp)
     root.mainloop()
 
-initialise_libs()
+x = threading.Thread(target=initialise_clock)
+y= threading.Thread(target=initialise_libs)
+x.start()
+y.start()
+x.join()
+y.join()
