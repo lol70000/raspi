@@ -1,4 +1,4 @@
-from classes import FullscreenWindow,newsApi,clock
+from classes import FullscreenWindow,newsApi,clock,Gracefullkiller
 from newsapi import NewsApiClient
 import threading
 import tkinter as tk
@@ -16,8 +16,9 @@ def initialise_libs():
     req = ["Formel 1","general"]
 
     root = tk.Tk()
-    app = FullscreenWindow(root,"black",800,480,disp)
+    app = FullscreenWindow(root,"black",800,480,disp,"notsilence")
     root.mainloop()
+
 
 x = threading.Thread(target=initialise_clock)
 y= threading.Thread(target=initialise_libs)
@@ -25,3 +26,5 @@ x.start()
 y.start()
 x.join()
 y.join()
+
+killer = Gracefullkiller()
